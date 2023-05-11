@@ -1,13 +1,11 @@
 package com.example.controller;
 
-
 import com.example.entity.ImageEntity;
 import com.example.repository.ImageRepository;
-
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
+import org.springframework.web.server.ResponseStatusException;
 
 
 
@@ -23,8 +21,9 @@ public class ImageController {
 
 
     @PostMapping()
-    ImageEntity postImage(@RequestParam("image") MultipartFile file) throws IOException {
+    ImageEntity createImage(@RequestParam("image") MultipartFile file){
 
+        try {
         ImageEntity imageEntity = new ImageEntity();
 
         imageEntity.setContentType(file.getContentType());
@@ -33,9 +32,22 @@ public class ImageController {
         imageRepository.save(imageEntity);
         // todo: save to database
         return imageEntity;
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
 
     }
-    // todo: @GetMapping
+
+    @GetMapping("/{id}")
+    ImageEntity readImage(@PathVariable Long id) {
+        return imageRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+    }
+
+
+
+
 
 
 

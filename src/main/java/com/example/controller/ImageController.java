@@ -3,17 +3,12 @@ package com.example.controller;
 
 import com.example.entity.ImageEntity;
 import com.example.repository.ImageRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.awt.*;
 import java.io.IOException;
-import java.nio.file.Path;
+
 
 
 @RestController

@@ -17,7 +17,6 @@ public class ImageEntity {
 
     private Long id;
     private String name;
-    private String filePath;
     private String contentType;
     @Column(length = 50000000)
     private byte[] picByte;

@@ -6,5 +6,4 @@ import org.springframework.data.repository.ListCrudRepository;
 
 @Transactional
 public interface ImageRepository extends ListCrudRepository<ImageEntity, Long> {
-    ImageEntity findByName(String name);
 }

@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 
-
 @RestController
 @RequestMapping("/images")
 public class ImageController {
@@ -36,7 +35,6 @@ public class ImageController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @GetMapping("/{id}")
@@ -58,6 +56,8 @@ public class ImageController {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
         }
-
-
+    @DeleteMapping("/{id}")
+    void deleteImage (@PathVariable long id){
+        imageRepository.deleteById(id);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -22,7 +23,7 @@ public class ImageController {
 
 
     @PostMapping()
-    void createImage(@RequestParam("image") MultipartFile file) {
+    String createImage(@RequestParam("image") MultipartFile file, UriComponentsBuilder ur) {
 
         try {
             ImageEntity imageEntity = new ImageEntity();
@@ -31,7 +32,7 @@ public class ImageController {
             imageEntity.setPicByte(file.getBytes());
             imageEntity.setName(file.getName() + Math.random());
             imageRepository.save(imageEntity);
-
+            return ur.path("/images/" + imageEntity.getId()).toUriString();
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }

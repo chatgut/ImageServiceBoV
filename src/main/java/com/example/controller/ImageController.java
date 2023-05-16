@@ -22,7 +22,7 @@ public class ImageController {
 
 
     @PostMapping()
-    ImageEntity createImage(@RequestParam("image") MultipartFile file) {
+    void createImage(@RequestParam("image") MultipartFile file) {
 
         try {
             ImageEntity imageEntity = new ImageEntity();
@@ -31,7 +31,7 @@ public class ImageController {
             imageEntity.setPicByte(file.getBytes());
             imageEntity.setName(file.getName() + Math.random());
             imageRepository.save(imageEntity);
-            return imageEntity;
+
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }

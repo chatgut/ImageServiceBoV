@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.entity.ImageEntity;
 import com.example.repository.ImageRepository;
+import org.hibernate.id.GUIDGenerator;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.UUID;
 
 
 @RestController
@@ -31,7 +34,7 @@ public class ImageController {
 
             imageEntity.setContentType(file.getContentType());
             imageEntity.setPicByte(file.getBytes());
-            imageEntity.setName(file.getName() + Math.random());
+            imageEntity.setName(file.getName() + UUID.randomUUID());
             imageRepository.save(imageEntity);
             return ur.path("/images/" + imageEntity.getId()).toUriString();
         } catch (Exception e) {

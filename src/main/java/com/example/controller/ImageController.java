@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/images")
+@CrossOrigin
 public class ImageController {
 
     private final ImageRepository imageRepository;

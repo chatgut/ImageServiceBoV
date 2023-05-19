@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.entity.ImageEntity;
 import com.example.repository.ImageRepository;
-import org.hibernate.id.GUIDGenerator;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
